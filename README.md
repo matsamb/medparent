@@ -4,7 +4,8 @@ start docker desktop
 
 on CLI run :
 
-cd /docker-compose path
+cd  /docker-compose path
+
 docker-compose up
 
 on your browser:
