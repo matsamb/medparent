@@ -20,7 +20,7 @@ services:
           SPRING_DATASOURCE_USERNAME: root
           SPRING_DATASOURCE_PASSWORD: secret
       build:
-            context: "./patient"
+            context: "./mediscreen-pa"
             dockerfile: "Dockerfile"
       depends_on:
           - dbsq
@@ -37,7 +37,7 @@ services:
           MEDCONFIGS_PATIENTURL: patient:9004
           MEDCONFIGS_HISTORICURL: historic:9002
       build:
-          context: "./ui"
+          context: "./mediscreen-ui"
           dockerfile: "Dockerfile"
       depends_on:
           - dbsq
@@ -49,7 +49,7 @@ services:
            SPRING_DATA_MONGODB_URI: mongodb://dbno/testhistoric
            SPRING_DATA_MONGODB_AUTO_INDEX_CREATION: "true"
        build:
-           context: "./historic"
+           context: "./mediscreen-hi"
            dockerfile: "Dockerfile"
        depends_on:
             - dbno
