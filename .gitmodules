@@ -1,0 +1,9 @@
+[submodule "mediscreen-pa"]
+	path = mediscreen-pa
+	url = https://github.com/matsamb/mediscreen-pa
+[submodule "mediscreen-hi"]
+	path = mediscreen-hi
+	url = https://github.com/matsamb/mediscreen-hi
+[submodule "mediscreen-ui"]
+	path = mediscreen-ui
+	url = https://github.com/matsamb/mediscreen-ui
