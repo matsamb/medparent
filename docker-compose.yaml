@@ -4,13 +4,9 @@ services:
        image: mongo
        environment:
            MONGO_INITDB: testhistoric
-           #MONGO_INITDB_ROOT_USERNAME: mate
-          # MONGO_INITDB_ROOT_PASSWORD: mateson
   
    dbsq:
       image: mysql
-      # ports:
-      #      - "3307:3306"
       environment:
           MYSQL_ROOT_USER: root
           MYSQL_ROOT_PASSWORD: secret
@@ -19,15 +15,13 @@ services:
    patient:
       image: matsamb/med-patient
       restart: on-failure
-      #  expose: 
-      #      - "9004"
       environment:
           SPRING_DATASOURCE_URL: jdbc:mysql://dbsq/testpatient?useSSL=false&useJDBCComplaintTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
           SPRING_DATASOURCE_USERNAME: root
           SPRING_DATASOURCE_PASSWORD: secret
-      #  build:
-      #      context: "./patient"
-      #      dockerfile: "Dockerfile"
+      build:
+            context: "./patient"
+            dockerfile: "Dockerfile"
       depends_on:
           - dbsq
 
@@ -42,23 +36,21 @@ services:
           SPRING_DATASOURCE_PASSWORD: secret
           MEDCONFIGS_PATIENTURL: patient:9004
           MEDCONFIGS_HISTORICURL: historic:9002
-      #  build:
-      #      context: "./ui"
-      #      dockerfile: "Dockerfile"
+      build:
+          context: "./ui"
+          dockerfile: "Dockerfile"
       depends_on:
           - dbsq
 
    historic:
        image: matsamb/med-historic
        restart: on-failure
-     #  expose: 
-     #       - "9002"
        environment:
            SPRING_DATA_MONGODB_URI: mongodb://dbno/testhistoric
            SPRING_DATA_MONGODB_AUTO_INDEX_CREATION: "true"
-     # build:
-     #     context: "./historic"
-     #      dockerfile: "Dockerfile"
+       build:
+           context: "./historic"
+           dockerfile: "Dockerfile"
        depends_on:
             - dbno
 
