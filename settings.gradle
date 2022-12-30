@@ -1,4 +1,4 @@
 rootProject.name = 'parent'
-include 'patient'
-include 'historic'
-include 'ui'
+include 'mediscreen-hi'
+include 'mediscreen-pa'
+include 'mediscreen-ui'
